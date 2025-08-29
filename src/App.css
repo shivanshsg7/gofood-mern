@@ -73,3 +73,104 @@ body {
   padding: 10px 0;
   text-align: center;
 }
+
+/* ------------------------- */
+/* Enhanced theme utilities  */
+/* ------------------------- */
+
+:root {
+  --brand-accent: #22c55e; /* emerald-500 */
+  --brand-accent-600: #16a34a;
+  --surface: #18181b; /* zinc-900 */
+  --surface-2: #1f1f23; /* slightly lighter */
+  --text-muted: #a1a1aa;
+  --shadow-color: rgba(0,0,0,0.35);
+}
+
+.shadow-soft {
+  box-shadow: 0 10px 25px var(--shadow-color) !important;
+}
+
+.navbar-glass {
+  background: rgba(24, 24, 27, 0.6) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.navbar .navbar-brand {
+  letter-spacing: 0.5px;
+}
+
+/* Buttons */
+.btn-brand {
+  background: var(--brand-accent) !important;
+  border-color: var(--brand-accent) !important;
+  color: #0b0f0c !important;
+}
+.btn-brand:hover {
+  background: var(--brand-accent-600) !important;
+  border-color: var(--brand-accent-600) !important;
+}
+
+.btn-outline-light {
+  border-color: rgba(255,255,255,0.7) !important;
+  color: #fff !important;
+}
+.btn-outline-light:hover {
+  background: rgba(255,255,255,0.1) !important;
+}
+
+/* Product cards */
+.product-card {
+  background: var(--surface-2) !important;
+  border-radius: 14px !important;
+  transition: transform 180ms ease, box-shadow 200ms ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px var(--shadow-color) !important;
+}
+.product-card .card-title {
+  font-weight: 600;
+}
+.product-card .card-text {
+  color: var(--text-muted);
+}
+
+/* Pricing chunk */
+.price-chip {
+  background: #0b0f0c;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Carousel readability overlay */
+.carousel .carousel-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.45) 0%,
+    rgba(0,0,0,0.35) 30%,
+    rgba(0,0,0,0.55) 100%
+  );
+  pointer-events: none;
+}
+
+/* Search input elevaton */
+.search-elevated {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  background: rgba(24,24,27,0.65) !important;
+  color: #fff !important;
+}
+.search-elevated::placeholder { color: rgba(255,255,255,0.65); }
+
+/* Section titles */
+.section-title {
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}

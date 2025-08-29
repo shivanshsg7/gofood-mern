@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-success">
+      <nav className="navbar navbar-expand-lg navbar-dark navbar-glass sticky-top shadow-soft">
         <div className="container-fluid">
           <Link className="navbar-brand fs-1 fst-italic" to="/">GoFood</Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -37,16 +37,16 @@ const Navbar = () => {
 
             {!localStorage.getItem("authtoken") ? (
               <div className='d-flex ms-auto'>
-                <Link className="btn bg-white text-success mx-1" to="/login">Login</Link>
-                <Link className="btn bg-white text-success mx-1" to="/createuser">Sign up</Link>
+                <Link className="btn btn-brand mx-1" to="/login">Login</Link>
+                <Link className="btn btn-outline-light mx-1" to="/createuser">Sign up</Link>
               </div>
             ) : (
               <div className="d-flex">
-                <button className="btn bg-white text-success mx-2" onClick={() => setCartView(true)}>
+                <button className="btn btn-outline-light mx-2" onClick={() => setCartView(true)}>
                   My Cart <Badge pill bg="danger">{cartItems.length}</Badge>
                 </button>
 
-                <button className="btn bg-white text-danger mx-2" onClick={handleLogout}>
+                <button className="btn btn-danger mx-2" onClick={handleLogout}>
                   Logout
                 </button>
               </div>

@@ -51,16 +51,16 @@ export default function Card(props) {
   };
 
   return (
-    <div className="card mt-3" style={{ width: "18rem", maxHeight: "400px", borderRadius: "10px" }}>
+    <div className="card product-card hover-lift mt-3 h-100 d-flex flex-column" style={{ width: "18rem", borderRadius: "14px" }}>
       <img
         src={props.foodItem.img}
         className="card-img-top"
         alt={props.foodItem.name || "Food Item"}
-        style={{ objectFit: "cover", height: "180px" }}
+        style={{ objectFit: "cover", height: "200px" }}
       />
-      <div className="card-body d-flex flex-column">
+      <div className="card-body d-flex flex-column flex-grow-1">
         <h5 className="card-title">{props.foodItem.name}</h5>
-        <p className="card-text flex-grow-1">This is some important content related to the food item.</p>
+        <p className="card-text flex-grow-1 mb-3">Delicious, freshly prepared and served hot. Customize size and quantity.</p>
 
         <div className="container w-100 mt-auto">
           <div className="d-flex justify-content-between align-items-center">
@@ -89,14 +89,14 @@ export default function Card(props) {
               )}
             </select>
 
-            <div className="d-inline h-100 fs-5">
+            <div className="d-inline h-100 fs-5 price-chip">
               ₹{totalPrice}/-
             </div>
           </div>
 
           <hr className="mt-3" />
           <button
-            className="btn btn-warning justify-content-center ms-2"
+            className="btn btn-brand justify-content-center ms-2"
             onClick={handleAddToCart}
           >
             Add to Cart

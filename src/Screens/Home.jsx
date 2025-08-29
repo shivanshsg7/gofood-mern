@@ -53,17 +53,17 @@ const Home = () => {
         <div className="position-absolute top-50 start-50 translate-middle z-1 w-100 d-flex justify-content-center">
           <form onSubmit={handleSearch} className="d-flex w-50">
             <input
-              className="form-control me-2"
+              className="form-control me-2 search-elevated"
               type="search"
               placeholder="Search food items..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              style={{ boxShadow: '0 2px 10px rgba(0,0,0,0.2)' }}
+              style={{}}
             />
             <button
               className="btn btn-outline-light"
               type="submit"
-              style={{ boxShadow: '0 2px 10px rgba(0,0,0,0.2)' }}
+              style={{}}
             >
               Search
             </button>
@@ -105,7 +105,7 @@ const Home = () => {
         ) : (
           foodCat.map(category => (
             <div key={category._id} className="mb-5">
-              <h3>{category.CategoryName}</h3>
+              <h3 className="section-title">{category.CategoryName}</h3>
               <hr />
               <div className="row">
                 {foodItem
