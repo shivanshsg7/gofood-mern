@@ -1,8 +1,8 @@
 // Updated ContextReducer.js
 import React, { createContext, useContext, useReducer } from 'react';
 
-const CartStateContext = createContext();
-const CartDispatchContext = createContext();
+const CartStateContext = createContext();// To store cart items
+const CartDispatchContext = createContext();//to uodate the cart item
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -19,9 +19,12 @@ const reducer = (state, action) => {
       ];
 
     case 'REMOVE_ITEM':
+      console.log(`${action.name} item  is removed`);
       if (!action.payload || !action.payload.id || !action.payload.size) return state;
+      
       return state.filter(
         item => !(item.id === action.payload.id && item.size === action.payload.size)
+        
       );
 
     case 'UPDATE_ITEM':

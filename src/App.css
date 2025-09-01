@@ -146,6 +146,39 @@ body {
   border: 1px solid rgba(255,255,255,0.06);
 }
 
+/* Selector row (Qty + Size) */
+.option-row {
+  gap: 8px;
+}
+
+.select-control {
+  height: 38px;
+  padding: 0 10px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  color: #ffffff !important;
+}
+.select-control:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(34,197,94,0.25) !important;
+  border-color: var(--brand-accent) !important;
+}
+
+.size-select {
+  text-transform: lowercase;
+}
+.size-select option {
+  text-transform: lowercase;
+}
+
+/* Ensure dropdown list items stay readable on dark themes (Windows/Chrome) */
+.select-control option,
+.size-select option {
+  color: #111 !important;
+  background-color: #ffffff !important;
+}
+
 /* Carousel readability overlay */
 .carousel .carousel-inner::after {
   content: "";
