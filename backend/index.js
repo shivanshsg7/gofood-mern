@@ -3,6 +3,7 @@ const mongoDB = require('./db');
 const cors = require('cors');
 
 const app = express();
+require('dotenv').config();
 const port = 5000;
 
 // Connect to MongoDB and then start the server
@@ -15,10 +16,11 @@ mongoDB().then(() => {
 
   app.use(express.json()); // Middleware to parse JSON bodies
 
-  // Routes
-  app.use('/api', require('./Routes/Createuser.js'));
-  app.use('/api', require('./Routes/DisplayData.js'));
-  app.use('/api', require('./Routes/OrderData.js')); // <- Correct path
+  // Routes (MVC)
+  app.use('/api', require('./Routes/authRoutes.js'));
+  app.use('/api', require('./Routes/dataRoutes.js'));
+  app.use('/api', require('./Routes/orderRoutes.js'));
+  app.use('/api', require('./Routes/paymentRoutes.js'));
 
   // Default Route
   app.get('/', (req, res) => {
