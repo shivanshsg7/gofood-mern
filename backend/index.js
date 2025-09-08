@@ -17,7 +17,7 @@ mongoDB().then(() => {
   app.use(express.json()); // Middleware to parse JSON bodies
 
   // Routes
-  app.use('/api', require('./Routes/Createuser.js'));
+  app.use('/api', require('./Routes/createUser.js'));
   app.use('/api', require('./Routes/DisplayData.js'));
   app.use('/api', require('./Routes/OrderData.js')); // <- Correct path
   app.use('/api/payment', require('./Routes/Payment.js')); // Payment routes
