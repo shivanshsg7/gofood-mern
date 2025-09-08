@@ -3,6 +3,7 @@ const mongoDB = require('./db');
 const cors = require('cors');
 
 const app = express();
+require('dotenv').config();
 const port = 5000;
 
 // Connect to MongoDB and then start the server
@@ -19,6 +20,7 @@ mongoDB().then(() => {
   app.use('/api', require('./Routes/authRoutes.js'));
   app.use('/api', require('./Routes/dataRoutes.js'));
   app.use('/api', require('./Routes/orderRoutes.js'));
+  app.use('/api', require('./Routes/paymentRoutes.js'));
 
   // Default Route
   app.get('/', (req, res) => {
