@@ -15,10 +15,10 @@ mongoDB().then(() => {
 
   app.use(express.json()); // Middleware to parse JSON bodies
 
-  // Routes
-  app.use('/api', require('./Routes/Createuser.js'));
-  app.use('/api', require('./Routes/DisplayData.js'));
-  app.use('/api', require('./Routes/OrderData.js')); // <- Correct path
+  // Routes (MVC)
+  app.use('/api', require('./Routes/authRoutes.js'));
+  app.use('/api', require('./Routes/dataRoutes.js'));
+  app.use('/api', require('./Routes/orderRoutes.js'));
 
   // Default Route
   app.get('/', (req, res) => {
