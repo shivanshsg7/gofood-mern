@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 
 const Payment = ({ amount, orderData, onPaymentSuccess, onPaymentFailure, onCancel }) => {
   const [loading, setLoading] = useState(false);
+  
+  console.log('Payment component rendered with amount:', amount);
+  console.log('Payment component props:', { amount, orderData, onPaymentSuccess, onPaymentFailure, onCancel });
 
   const loadRazorpayScript = () => {
     return new Promise((resolve) => {

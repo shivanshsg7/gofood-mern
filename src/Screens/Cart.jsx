@@ -9,68 +9,77 @@ export default function Cart() {
   const [showPayment, setShowPayment] = useState(false);
   const [orderProcessing, setOrderProcessing] = useState(false);
 
+  const handleCheckOut = () => {
+    // Show payment component instead of directly placing order
+    console.log('Checkout button clicked!');
+    console.log('Current showPayment state:', showPayment);
+    setShowPayment(true);
+    console.log('showPayment set to true');
+  };
+
+  const handlePaymentSuccess = async (paymentDetails) => {
+    const userEmail = localStorage.getItem("userEmail");
+    setOrderProcessing(true);
+
+    try {
+      const response = await fetch("http://localhost:5000/api/orderData", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          order_data: data,
+          email: userEmail,
+          order_date: new Date().toDateString(),
+          payment_status: 'paid',
+          payment_id: paymentDetails.paymentId,
+          razorpay_order_id: paymentDetails.orderId
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log("Order Response:", result);
+      
+      // Clear cart and hide payment
+      dispatch({ type: "DROP" });
+      setShowPayment(false);
+      setOrderProcessing(false);
+      
+      alert("Order placed successfully! Payment ID: " + paymentDetails.paymentId);
+      
+    } catch (error) {
+      console.error("Order placement error:", error.message);
+      setOrderProcessing(false);
+      alert("Payment successful but failed to save order: " + error.message);
+    }
+  };
+
+  const handlePaymentFailure = (error) => {
+    setOrderProcessing(false);
+    alert("Payment failed: " + error);
+  };
+
+  const handlePaymentCancel = () => {
+    setShowPayment(false);
+  };
+
   if (data.length === 0) {
     return (
       <div className="m-5 w-100 text-center fs-3">The Cart is Empty!</div>
     );
   }
 
-const handleCheckOut = () => {
-  // Show payment component instead of directly placing order
-  setShowPayment(true);
-};
-
-const handlePaymentSuccess = async (paymentDetails) => {
-  const userEmail = localStorage.getItem("userEmail");
-  setOrderProcessing(true);
-
-  try {
-    const response = await fetch("http://localhost:5000/api/orderData", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        order_data: data,
-        email: userEmail,
-        order_date: new Date().toDateString(),
-        payment_status: 'paid',
-        payment_id: paymentDetails.paymentId,
-        razorpay_order_id: paymentDetails.orderId
-      })
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const result = await response.json();
-    console.log("Order Response:", result);
-    
-    // Clear cart and hide payment
-    dispatch({ type: "DROP" });
-    setShowPayment(false);
-    setOrderProcessing(false);
-    
-    alert("Order placed successfully! Payment ID: " + paymentDetails.paymentId);
-    
-  } catch (error) {
-    console.error("Order placement error:", error.message);
-    setOrderProcessing(false);
-    alert("Payment successful but failed to save order: " + error.message);
-  }
-};
-
-const handlePaymentFailure = (error) => {
-  setOrderProcessing(false);
-  alert("Payment failed: " + error);
-};
-
-const handlePaymentCancel = () => {
-  setShowPayment(false);
-};
-
   const totalPrice = data.reduce((total, item) => total + item.price, 0);
+
+  // Debug logging
+  console.log('Cart component rendered');
+  console.log('showPayment state:', showPayment);
+  console.log('data length:', data.length);
+  console.log('totalPrice:', totalPrice);
 
   return (
     <div className="container m-auto mt-5">
