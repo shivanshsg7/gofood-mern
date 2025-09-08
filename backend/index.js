@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoDB = require('./db');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 const port = 5000;
@@ -19,6 +20,7 @@ mongoDB().then(() => {
   app.use('/api', require('./Routes/Createuser.js'));
   app.use('/api', require('./Routes/DisplayData.js'));
   app.use('/api', require('./Routes/OrderData.js')); // <- Correct path
+  app.use('/api/payment', require('./Routes/Payment.js')); // Payment routes
 
   // Default Route
   app.get('/', (req, res) => {
