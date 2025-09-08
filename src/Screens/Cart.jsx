@@ -17,13 +17,29 @@ const handleCheckOut = async () => {
   const totalPrice = data.reduce((total, item) => total + item.price, 0);
 
   try {
+    if (!totalPrice || totalPrice <= 0) {
+      alert('Cart total must be greater than 0 to proceed to payment.');
+      return;
+    }
+    if (typeof window === 'undefined' || !window.Razorpay) {
+      alert('Razorpay SDK failed to load. Please check your internet and refresh.');
+      return;
+    }
     // 1) Ask backend to create Razorpay order
     const orderRes = await fetch("http://localhost:5000/api/create-razorpay-order", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ amount: totalPrice })
     });
-    if (!orderRes.ok) throw new Error(`Order create failed: ${orderRes.status}`);
+    if (!orderRes.ok) {
+      try {
+        const errJson = await orderRes.json();
+        throw new Error(errJson.error || JSON.stringify(errJson));
+      } catch (_) {
+        const errText = await orderRes.text();
+        throw new Error(errText || `Order create failed: ${orderRes.status}`);
+      }
+    }
     const { orderId, amount, currency, keyId } = await orderRes.json();
 
     // 2) Open Razorpay checkout
