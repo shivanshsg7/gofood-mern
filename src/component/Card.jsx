@@ -26,7 +26,7 @@ export default function Card(props) {
     } else if (priceOptions.length === 0 && size !== '') {
       setSize('');
     }
-  }, [props.options]);
+  }, [priceOptions, size]);
 
   const currentPrice = size && options[size] ? parseInt(options[size]) : 0;
   const totalPrice = currentPrice * qty;
