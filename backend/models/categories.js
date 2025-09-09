@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
 
-const FoodItemSchema = new mongoose.Schema({
-  name: String,
-  img: String,
-  options: Array,
-  description: String
+const CategorySchema = new mongoose.Schema({
+  CategoryName: String
 });
 
-module.exports = mongoose.model('food_items', FoodItemSchema);
+module.exports = mongoose.model('foodcategories', CategorySchema);
+

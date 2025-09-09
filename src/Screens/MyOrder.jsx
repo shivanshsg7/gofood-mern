@@ -29,9 +29,9 @@ export default function MyOrder() {
   }, []);
 
   return (
-    <div>
+    <div style={{background: 'var(--surface)', minHeight: '100vh'}}>
       <Navbar />
-      <div className='container'>
+      <div className='container py-4'>
         <div className='row'>
           {orderData.length > 0 ? (
             orderData.slice(0).reverse().map((orderGroup, index) => {
@@ -39,37 +39,36 @@ export default function MyOrder() {
               const orderDate = dateEntry ? new Date(dateEntry.order_date).toLocaleString() : "Unknown Date";
 
               return (
-                <div key={index}>
-                  <div className='m-auto mt-5'>
-                    <h5>Order Date: {orderDate}</h5>
+                <div key={index} className="mb-5">
+                  <div className='bg-dark rounded-4 shadow-soft p-4 mb-3' style={{borderLeft: '6px solid var(--brand-accent)', boxShadow: '0 6px 24px rgba(34,197,94,0.08)'}}>
+                    <h5 className="fw-bold text-success mb-2" style={{fontSize: '1.3rem'}}>Order Date: {orderDate}</h5>
                     <hr />
-                  </div>
-
-                  <div className='row'>
-                    {orderGroup.map((item, idx) =>
-                      item.name ? (
-                        <div className='col-12 col-md-6 col-lg-3' key={idx}>
-                          <div className="card mt-3" style={{ width: "16rem", maxHeight: "360px" }}>
-                            <div className="card-body">
-                              <h5 className="card-title">{item.name}</h5>
-                              <div className='container w-100 p-0'>
-                                <span className='m-1'>Qty: {item.qty}</span>
-                                <span className='m-1'>Size: {item.size}</span>
-                                <div className='d-inline ms-2 h-100 w-20 fs-5'>
+                    <div className='row'>
+                      {orderGroup.map((item, idx) =>
+                        item.name ? (
+                          <div className='col-12 col-md-6 col-lg-3' key={idx}>
+                            <div className="card product-card hover-lift mt-3 h-100 d-flex flex-column" style={{ width: "16rem", borderRadius: "14px", background: 'var(--surface-2)', color: 'white', boxShadow: '0 10px 25px var(--shadow-color)' }}>
+                              <div className="card-body d-flex flex-column flex-grow-1">
+                                <h5 className="card-title fw-bold text-success">{item.name}</h5>
+                                <div className='container w-100 p-0 mb-2'>
+                                  <span className='badge bg-success me-2'>Qty: {item.qty}</span>
+                                  <span className='badge bg-secondary me-2 text-lowercase'>Size: {item.size}</span>
+                                </div>
+                                <div className='d-inline ms-2 h-100 w-20 fs-5 fw-bold text-success'>
                                   ₹{item.price}/-
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      ) : null
-                    )}
+                        ) : null
+                      )}
+                    </div>
                   </div>
                 </div>
               );
             })
           ) : (
-            <div className="text-center">No orders found</div>
+            <div className="text-center py-5 fs-4 text-muted">No orders found</div>
           )}
         </div>
       </div>

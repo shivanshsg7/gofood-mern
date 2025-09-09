@@ -29,6 +29,10 @@ async function createOrder(req, res) {
 async function getMyOrders(req, res) {
   try {
     const myData = await Order.findOne({ email: req.body.email });
+    // If no order found, return empty order_data array
+    if (!myData) {
+      return res.json({ orderData: { order_data: [] } });
+    }
     return res.json({ orderData: myData });
   } catch (error) {
     console.error(error.message);
