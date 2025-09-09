@@ -58,7 +58,7 @@ const Navbar = () => {
       {/* ✅ Modal for Cart */}
       {cartView && (
         <Modal onClose={() => setCartView(false)}>
-          <Cart />
+          <Cart onClose={() => setCartView(false)} />
         </Modal>
       )}
     </div>

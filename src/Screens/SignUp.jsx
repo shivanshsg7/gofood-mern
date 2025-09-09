@@ -36,67 +36,92 @@ const SignUp = () => {
   };
 
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="name" className="form-label">
-            Name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            name="name"
-            value={credentials.name}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            Email address
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            name="email"
-            value={credentials.email}
-            onChange={handleChange}
-            aria-describedby="emailHelp"
-          />
-          <div id="emailHelp" className="form-text">
-            We'll never share your email with anyone else.
+    <div className="container d-flex align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
+      <div className="row w-100 justify-content-center">
+        <div className="col-12 col-md-6 col-lg-4">
+          <div className="card product-card shadow-soft p-4" style={{ borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
+            <div className="text-center mb-4">
+              <h2 className="fw-bold mb-2" style={{ color: 'var(--brand-accent)' }}>Create Account</h2>
+              <p className="text-muted mb-0">Join us and start ordering delicious food</p>
+            </div>
+            
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <label htmlFor="name" className="form-label fw-semibold">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  className="form-control select-control"
+                  name="name"
+                  value={credentials.name}
+                  onChange={handleChange}
+                  placeholder="Enter your full name"
+                  style={{ height: '48px' }}
+                />
+              </div>
+              
+              <div className="mb-4">
+                <label htmlFor="email" className="form-label fw-semibold">
+                  Email address
+                </label>
+                <input
+                  type="email"
+                  className="form-control select-control"
+                  name="email"
+                  value={credentials.email}
+                  onChange={handleChange}
+                  aria-describedby="emailHelp"
+                  placeholder="Enter your email"
+                  style={{ height: '48px' }}
+                />
+                <div id="emailHelp" className="form-text text-muted small mt-2">
+                  We'll never share your email with anyone else.
+                </div>
+              </div>
+              
+              <div className="mb-4">
+                <label htmlFor="password" className="form-label fw-semibold">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  className="form-control select-control"
+                  name="password"
+                  value={credentials.password}
+                  onChange={handleChange}
+                  placeholder="Create a strong password"
+                  style={{ height: '48px' }}
+                />
+              </div>
+              
+              <div className="mb-4">
+                <label htmlFor="geolocation" className="form-label fw-semibold">
+                  Location
+                </label>
+                <input
+                  type="text"
+                  className="form-control select-control"
+                  name="geolocation"
+                  value={credentials.geolocation}
+                  onChange={handleChange}
+                  placeholder="Enter your location"
+                  style={{ height: '48px' }}
+                />
+              </div>
+
+              <div className="d-grid gap-3">
+                <button type="submit" className="btn btn-brand fw-semibold py-2" style={{ height: '48px' }}>
+                  Create Account
+                </button>
+                <Link to="/login" className="btn btn-outline-light fw-semibold py-2" style={{ height: '48px' }}>
+                  Already have an account?
+                </Link>
+              </div>
+            </form>
           </div>
         </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
-            Password
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            name="password"
-            value={credentials.password}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="geolocation" className="form-label">
-            Location
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            name="geolocation"
-            value={credentials.geolocation}
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit" className="m-3 btn btn-success">
-          Submit
-        </button>
-        <Link to="/login" className="m-3 btn btn-danger">
-          Already a user
-        </Link>
-      </form>
+      </div>
     </div>
   );
 };

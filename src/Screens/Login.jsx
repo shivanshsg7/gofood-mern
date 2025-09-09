@@ -42,45 +42,62 @@ const Login = () => {
     }
   };
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit}>
+    <div className="container d-flex align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
+      <div className="row w-100 justify-content-center">
+        <div className="col-12 col-md-6 col-lg-4">
+          <div className="card product-card shadow-soft p-4" style={{ borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
+            <div className="text-center mb-4">
+              <h2 className="fw-bold mb-2" style={{ color: 'var(--brand-accent)' }}>Welcome Back</h2>
+              <p className="text-muted mb-0">Sign in to your account</p>
+            </div>
+            
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <label htmlFor="email" className="form-label fw-semibold">
+                  Email address
+                </label>
+                <input
+                  type="email"
+                  className="form-control select-control"
+                  name="email"
+                  value={credentials.email}
+                  onChange={handleChange}
+                  aria-describedby="emailHelp"
+                  placeholder="Enter your email"
+                  style={{ height: '48px' }}
+                />
+                <div id="emailHelp" className="form-text text-muted small mt-2">
+                  We'll never share your email with anyone else.
+                </div>
+              </div>
+              
+              <div className="mb-4">
+                <label htmlFor="password" className="form-label fw-semibold">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  className="form-control select-control"
+                  name="password"
+                  value={credentials.password}
+                  onChange={handleChange}
+                  placeholder="Enter your password"
+                  style={{ height: '48px' }}
+                />
+              </div>
 
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            Email address
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            name="email"
-            value={credentials.email}
-            onChange={handleChange}
-            aria-describedby="emailHelp"
-          />
-          <div id="emailHelp" className="form-text">
-            We'll never share your email with anyone else.
+              <div className="d-grid gap-3">
+                <button type="submit" className="btn btn-brand fw-semibold py-2" style={{ height: '48px' }}>
+                  Sign In
+                </button>
+                <Link to="/createuser" className="btn btn-outline-light fw-semibold py-2" style={{ height: '48px' }}>
+                  Create New Account
+                </Link>
+              </div>
+            </form>
           </div>
         </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
-            Password
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            name="password"
-            value={credentials.password}
-            onChange={handleChange}
-          />
-        </div>
-
-        <button type="submit" className="m-3 btn btn-success">
-          Submit
-        </button>
-        <Link to="/createuser" className="m-3 btn btn-danger">
-          I'm a new user
-        </Link>
-      </form>
+      </div>
     </div>
   )
 }
