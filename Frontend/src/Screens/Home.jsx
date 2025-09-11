@@ -15,12 +15,12 @@ const Home = () => {
     console.log("1. Starting to load data...");
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/api/foodData", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        }
-      });
+  const response = await fetch("https://gofood-mern-pjgu.onrender.com/api/foodData", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    }
+  });
       console.log("2. API response received:", response.status);
       const data = await response.json();
       console.log("3. Data parsed. Items:", data[0]?.length, "Categories:", data[1]?.length);
