@@ -51,7 +51,7 @@ const handleCheckOut = async () => {
       handler: async function (response) {
         try {
           // 3) Verify on backend and save order
-          const verifyRes = await fetch("http://localhost:5000/api/verify-razorpay-payment", {
+          const verifyRes = await fetch("https://gofood-mern-pjgu.onrender.com/api/verify-razorpay-payment", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
