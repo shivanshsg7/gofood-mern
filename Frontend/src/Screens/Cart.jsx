@@ -30,7 +30,7 @@ const handleCheckOut = async () => {
 
   try {
     // 1) Ask backend to create Razorpay order
-    const orderRes = await fetch("http://localhost:5000/api/create-razorpay-order", {
+    const orderRes = await fetch("https://gofood-mern-pjgu.onrender.com/api/create-razorpay-order", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ amount: totalPrice })
